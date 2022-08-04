@@ -1,4 +1,4 @@
-package target.api.test;
+package com.walmart.platform.common;
 
 
 import java.io.IOException;
@@ -7,12 +7,24 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.Map;
+// import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.ArrayList;
+// import java.util.TypeReference;
+// import ObjectMapper;
+
+import org.checkerframework.checker.units.qual.s;
+
 // import com.fasterxml.jackson.databind.ObjectMapper;
 // import com.fasterxml.jackson.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonElement;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+// import jackson.databind.ObjectMapper;
 
 class Walmart {
 
@@ -64,12 +76,51 @@ class Walmart {
 				: httpConn.getErrorStream();
 		Scanner s = new Scanner(responseStream).useDelimiter("\\A");
 		String response = s.hasNext() ? s.next() : "";
-        // ObjectMapper objectMapper = new ObjectMapper();
-        // objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(response);
+
         JsonElement jsonElement = new JsonParser().parse(response);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(jsonElement);
-        System.out.println(json);
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		Map<String, Object> jsonMap = objectMapper.readValue(json, new TypeReference<Map<String, Object>>(){});
+		Object data = jsonMap.get("data");
+
+		Map<String, Object> dataMap = objectMapper.convertValue(data, Map.class);
+		Object search = dataMap.get("search");
+
+		Map<String, Object> searchMap = objectMapper.convertValue(search, Map.class);
+		Object searchResult = searchMap.get("searchResult");
+
+		Map<String, Object> searchResultMap = objectMapper.convertValue(searchResult, Map.class);
+		Object itemStacks = searchResultMap.get("itemStacks");
+
+		ArrayList<Object> itemStacksAL = objectMapper.convertValue(itemStacks, ArrayList.class);
+		Object firstInAL = itemStacksAL.get(0);
+
+		Map<String, Object> itemsV2Map = objectMapper.convertValue(firstInAL, Map.class);
+		Object itemsV2 = itemsV2Map.get("itemsV2");
+
+		ArrayList<Object> itemsAL = objectMapper.convertValue(itemsV2, ArrayList.class);
+
+		for (Object o : itemsAL) {
+			HashMap<String,String> item = objectMapper.convertValue(o, HashMap.class);
+			System.out.println(item.get("name"));
+
+			HashMap<String,String> itemAvailability = objectMapper.convertValue(item.get("availabilityStatusV2"), HashMap.class);
+			System.out.println(itemAvailability.get("display"));
+
+			Map<String,Object> itemPriceInfo = objectMapper.convertValue(item.get("priceInfo"), Map.class);
+			if (itemPriceInfo.get("currentPrice") != null) {
+				HashMap<String,Integer> itemCurPrice = objectMapper.convertValue(itemPriceInfo.get("currentPrice"), HashMap.class);
+				System.out.println(itemCurPrice.get("price"));
+			} else if (itemPriceInfo.get("priceRange") != null) {
+				HashMap<String,Integer> itemPriceRange = objectMapper.convertValue(itemPriceInfo.get("priceRange"), HashMap.class);
+				System.out.println(itemPriceRange.get("minPrice"));
+				System.out.println(itemPriceRange.get("maxPrice"));
+			}
+
+			System.out.println("--------------------------------------------------------");
+		}
 	}
 
 }
