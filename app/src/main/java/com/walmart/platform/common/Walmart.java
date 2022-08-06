@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 // import java.util.LinkedHashMap;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -81,6 +83,8 @@ class Walmart {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(jsonElement);
 
+		System.out.println(json);
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, Object> jsonMap = objectMapper.readValue(json, new TypeReference<Map<String, Object>>(){});
 		Object data = jsonMap.get("data");
@@ -102,25 +106,99 @@ class Walmart {
 
 		ArrayList<Object> itemsAL = objectMapper.convertValue(itemsV2, ArrayList.class);
 
-		for (Object o : itemsAL) {
-			HashMap<String,String> item = objectMapper.convertValue(o, HashMap.class);
-			System.out.println(item.get("name"));
+		Set<String> BABYBRANDS = new HashSet<>();
+		BABYBRANDS.add("Similac");
+		BABYBRANDS.add("Enfamil");
+		BABYBRANDS.add("Gerber");
+		BABYBRANDS.add("Parent's Choice");
+		BABYBRANDS.add("Enfagrow");
+		BABYBRANDS.add("Earth's Best");
+		BABYBRANDS.add("Aptamil");
+		BABYBRANDS.add("Baby Water");
+		BABYBRANDS.add("Bobbie Baby");
+		BABYBRANDS.add("Enspire");
+		BABYBRANDS.add("Nutramigen");
+		BABYBRANDS.add("Nestle");
+		BABYBRANDS.add("Bubs");
+		BABYBRANDS.add("HappyBaby");
+		BABYBRANDS.add("Kendamil");
+		BABYBRANDS.add("Kinderlyte");
+		BABYBRANDS.add("Pedialyte");
+		BABYBRANDS.add("PediaSure");
+		BABYBRANDS.add("Ready, Set, Food!");
+		BABYBRANDS.add("up & up");
 
-			HashMap<String,String> itemAvailability = objectMapper.convertValue(item.get("availabilityStatusV2"), HashMap.class);
+// Set<String> h = new HashSet<>(Arrays.asList("a", "b"));
+
+
+		for (Object o : itemsAL) {
+			// get name
+			Map<String,Object> item = objectMapper.convertValue(o, Map.class);
+			// System.out.println(item);
+			Object name = item.get("name");
+			String nameStr = objectMapper.convertValue(name, String.class);
+			System.out.println(name);
+
+			//get brand
+			for (String brand : BABYBRANDS) {
+				if (isBrand(nameStr, brand)) {
+					System.out.println(brand);
+					break;
+				}
+			}
+
+			// get availability
+			Map<String,Object> itemAvailability = objectMapper.convertValue(item.get("availabilityStatusV2"), Map.class);
 			System.out.println(itemAvailability.get("display"));
 
+			// get price
 			Map<String,Object> itemPriceInfo = objectMapper.convertValue(item.get("priceInfo"), Map.class);
 			if (itemPriceInfo.get("currentPrice") != null) {
-				HashMap<String,Integer> itemCurPrice = objectMapper.convertValue(itemPriceInfo.get("currentPrice"), HashMap.class);
+				Map<String,Integer> itemCurPrice = objectMapper.convertValue(itemPriceInfo.get("currentPrice"), Map.class);
 				System.out.println(itemCurPrice.get("price"));
 			} else if (itemPriceInfo.get("priceRange") != null) {
-				HashMap<String,Integer> itemPriceRange = objectMapper.convertValue(itemPriceInfo.get("priceRange"), HashMap.class);
+				Map<String,Integer> itemPriceRange = objectMapper.convertValue(itemPriceInfo.get("priceRange"), Map.class);
 				System.out.println(itemPriceRange.get("minPrice"));
 				System.out.println(itemPriceRange.get("maxPrice"));
 			}
 
+			// get thumbnail image URL
+			Object imageInfo = item.get("imageInfo");
+			Map<String,Object> imageInfoMap = objectMapper.convertValue(imageInfo, Map.class);
+			Object thumbnailURL = imageInfoMap.get("thumbnailUrl");
+			System.out.println(thumbnailURL);
+			
+
 			System.out.println("--------------------------------------------------------");
 		}
+	}
+
+	public static boolean isBrand(String name, String brand) {
+		if (name.contains(brand)) {
+			return true;
+		}
+		String[] words = name.split(" ");
+		for (String word : words) {
+			if (oneLetterAway(word, brand) || oneLetterAway(brand, word)) {
+				return true;
+			}			
+		}
+		return false;
+	}
+
+	public static boolean oneLetterAway(String word1, String word2) {
+		if (word1.equals(word2.substring(1))) {
+			return true;
+		} else if (word1.equals(word2.substring(0,word2.length()-1))) {
+			return true;
+		} else {
+			for (int i = 1; i < word2.length()-1; i++) {
+				if (word1.contains(word2.substring(0,i) + word2.substring(i+1))) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
