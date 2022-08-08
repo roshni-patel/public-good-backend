@@ -33,8 +33,8 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'target.api.test.Target'
-    // mainClass = 'com.walmart.platform.common.Walmart'
+    // mainClass = 'target.api.test.Target'
+    mainClass = 'com.walmart.platform.common.Walmart'
     // mainClass = 'com.kroger.api.KrogerAPI'
 }
 
