@@ -31,7 +31,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 class Walmart {
 
 	public static void main(String[] args) throws IOException {
-		String query_param = "tampons";
+		String query_param = "trampoline";
 		// System.out.println(String.format("https://www.walmart.com/orchestra/home/graphql/search?query=%s&page=1&prg=desktop&sort=best_match&ps=40&searchArgs.query=%s&searchArgs.prg=desktop&fitmentFieldParams=true&enablePortableFacets=true&enableFacetCount=false&fetchMarquee=true&fetchSkyline=true&fetchSbaTop=true&tenant=WM_GLASS", query_param, query_param));
 		URL url = new URL(String.format("https://www.walmart.com/orchestra/home/graphql/search?query=%s&page=1&prg=desktop&sort=best_match&ps=40&searchArgs.query=%s&searchArgs.prg=desktop&fitmentFieldParams=true&enablePortableFacets=true&enableFacetCount=false&fetchMarquee=true&fetchSkyline=true&fetchSbaTop=true&tenant=WM_GLASS", query_param, query_param));
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -102,8 +102,16 @@ class Walmart {
 		Object modules = contentLayoutMap.get("modules");
 		ArrayList<Object> modulesAL = objectMapper.convertValue(modules, ArrayList.class);
 
+		System.out.println(String.format("LENGTH OF MODULES LIST: %d", modulesAL.size()));
+
 		Object chosenModule = modulesAL.get(1);
 		Map<String, Object> moduleMap = objectMapper.convertValue(chosenModule, Map.class);
+		Object type = moduleMap.get("type");
+		String typeStr = objectMapper.convertValue(type, String.class);
+		if (!typeStr.equals("SearchSortFilterModule")) {
+			chosenModule = modulesAL.get(2);
+			moduleMap = objectMapper.convertValue(chosenModule, Map.class);
+		}
 
 		Object configs = moduleMap.get("configs");
 		Map<String, Object> configsMap = objectMapper.convertValue(configs, Map.class);
