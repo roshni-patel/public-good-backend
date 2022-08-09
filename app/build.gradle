@@ -25,7 +25,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'commons-codec:commons-codec:1.15'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
-    // implementation 'com.squareup.okhttp3:okhttp:4.10.0'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.13.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
@@ -33,8 +32,10 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    // mainClass = 'target.api.test.Target'
-    mainClass = 'com.walmart.platform.common.Walmart'
+     mainClass = 'target.api.test.Target'
+//     mainClass = 'target.api.test.TargetFormula'
+//    mainClass = 'com.walmart.platform.common.Walmart'
+//     mainClass = 'com.walmart.platform.common.WalmartFormula'
     // mainClass = 'com.kroger.api.KrogerAPI'
 }
 

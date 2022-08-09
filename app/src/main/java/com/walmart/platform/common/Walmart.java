@@ -1,6 +1,5 @@
 package com.walmart.platform.common;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -118,7 +117,6 @@ class Walmart {
 		Map<String, Object> configsMap = objectMapper.convertValue(configs, Map.class);
 
 		Object topNavFacets = configsMap.get("topNavFacets");
-//		if ()
 		ArrayList<Object> topNavFacetsAL = objectMapper.convertValue(topNavFacets, ArrayList.class);
 
 		Object chosenFacet = topNavFacetsAL.get(2);
