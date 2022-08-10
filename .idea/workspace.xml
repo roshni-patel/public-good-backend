@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d49ad32-5289-47af-9de8-224ef5ccbe0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/target/api/test/TargetFormula.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/distributions/app.tar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/distributions/app.tar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/reports/tests/test/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/walmart/platform/common/Walmart.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/walmart/platform/common/Walmart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/target/api/test/Target.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/target/api/test/Target.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/target/api/test/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/target/api/test/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1659808331324</updated>
       <workItem from="1659808332705" duration="19000" />
-      <workItem from="1659994104497" duration="15839000" />
+      <workItem from="1659994104497" duration="21735000" />
     </task>
     <servers />
   </component>
