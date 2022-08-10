@@ -9,8 +9,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/distributions/app.tar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/distributions/app.tar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/reports/tests/test/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/target/api/test/Target.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/target/api/test/Target.java" afterDir="false" />
     </list>
@@ -62,7 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1659808331324</updated>
       <workItem from="1659808332705" duration="19000" />
-      <workItem from="1659994104497" duration="21735000" />
+      <workItem from="1659994104497" duration="25832000" />
     </task>
     <servers />
   </component>
